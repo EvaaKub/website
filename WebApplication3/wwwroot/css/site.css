@@ -1,0 +1,109 @@
+
+
+
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+/* Новые стили для макета */
+
+/* Стили для верхней панели */
+/* Новые стили для верхней панели */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: #dcdcdc; /* Изменен цвет фона верхней панели на серый */
+    padding: 10px 0; /* Добавлено внутреннее заполнение (padding) для улучшения внешнего вида */
+}
+
+    /* Стили для элементов в верхней панели */
+    header p {
+        margin: 0;
+    }
+
+    header .col-4 {
+        padding: 0;
+    }
+
+
+/* Стили для контента под верхней панелью */
+body {
+    padding-top: 55px; /* Высота верхней панели */
+}
+
+/* Стили для боковой панели */
+
+/* Общие стили для боковой панели */
+.sidebar {
+   
+    top: 60px;
+    left: 0;
+    bottom: 0;
+    
+}
+
+    /* Стили для ссылок в боковой панели */
+    .sidebar a {
+        position: fixed;
+        display: block;
+        padding: 8px 16px;
+        text-decoration: none;
+        color: #333;
+        transition: background-color 0.3s ease; /* Плавное изменение цвета при наведении */
+    }
+
+        .sidebar a:hover {
+            background-color: #dcdcdc; /* Цвет фона при наведении */
+            color: #000; /* Цвет текста при наведении */
+        }
+
+    /* Убираем стандартное оформление маркера для списка ссылок */
+    .sidebar ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+/* Стили для основного контента */
+/* Изменения для основного контента */
+.main-content {
+    margin-left: 320px; /* Сдвиг в лево */
+    padding-top: 10px; /* Отступ от верхней панели */
+}
+
+.main{
+   display:inline-block;
+}
+
+
+.text-danger {
+    color: red;
+    font-size: 10px;
+}

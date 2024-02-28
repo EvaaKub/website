@@ -1,0 +1,89 @@
+@model WebApplication3.Models.ComboModelProfileANDGoodsCard
+@{
+    ViewBag.Title = "РИВ ГОШ - Магазин парфюмерии и косметики";
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="~/css/site.css">
+    <title>Профиль</title>
+</head>
+
+<body>
+    <td class="profile-container">
+        @foreach (var item in Model.userssData)
+        {
+            if (item.usersID == Model.usersID)
+            {
+                <div style="text-align: justify; margin-left: 10%; background-color: white; border: 1px solid black; border-radius: 15px; padding: 15px;">
+                    <p>Код пользователя № @item.usersID</p>
+                    <div class="table-divider"></div>
+                    <h3>Имя: @item.name</h3>
+                    <p>Почта: @item.email</p>
+                   
+                </div>
+
+
+                <br />
+                <br />
+                <a href="#" data-tab="my-orders" style="color: black; font-size: 25px">Корзина</a>
+                <br />
+                <br />
+                @if (!Model.CartData.Any(g => g.usersID == Model.usersID))
+                {
+                    <p>Ваша корзина пуста.</p>
+                }
+                <div class="center-container">
+                    @foreach (var group in Model.CartData.Where(g => g.usersID == Model.usersID))
+                    {
+                        <form method="post" action="/Home/RemoveCart" class="mb-3">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" asp-for="cartid" class="form-control" name="cartid" value="@group.CartId" />
+
+                            <div class="order-card">
+                                <div class="image-container">
+                                    @foreach (var good in Model.GoodssData)
+                                    {
+                                        if (good.goodid == group.goodid)
+                                        {
+                                            <img src="@good.foto1" alt="@good.name" style="max-width: 180px; max-height: 180px; text-align: left; " class="good-image" />
+                                        }
+                                    }
+                                </div>
+
+                                <div class="text-details">
+                                    @foreach (var good in Model.GoodssData)
+                                    {
+                                        if (good.goodid == group.goodid)
+                                        {
+                                            <p><b>Наименование товара:</b> @good.name</p>
+                                            <p><b> Цена:</b> @good.price руб.</p>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                            
+                        </form>
+                    }
+                </div>
+                <br />
+                <div style="text-align: center;">
+                    <div class="button-container" style="text-align: center;">
+                        <form action="/Home/Logoff" target="_blank">
+                            <button id="LogoutButton">Выйти из системы</button>
+                        </form>
+                        <form action="/Home/RemoveUser" target="_blank">
+                            <button id="DeleteAccountButton">Удалить аккаунт</button>
+                        </form>
+                    </div>
+                </div>
+
+            }
+        }
+    </td>
+</body>
+</html>

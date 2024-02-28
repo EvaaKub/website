@@ -1,0 +1,194 @@
+﻿<DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Персона - твой салон красоты!</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <!-- Ваши стили -->
+
+        <style>
+            /* Новые стили для верхней панели */
+            header {
+                background-color: #dcdcdc;
+                padding: 10px 0;
+            }
+
+            .navbar-brand img {
+                width: 150px;
+                height: 55px;
+            }
+
+            .navbar-nav {
+                flex-direction: row;
+            }
+
+                .navbar-nav .nav-item {
+                    margin-right: 25px; /* Увеличим расстояние между кнопками */
+                }
+
+                    .navbar-nav .nav-item:last-child {
+                        margin-right: 0;
+                    }
+
+                .navbar-nav .nav-link {
+                    color: #333;
+                }
+
+                    .navbar-nav .nav-link:hover {
+                        color: #000;
+                    }
+
+            .navbar-text {
+                margin-right: 20px;
+            }
+
+            /* Стили для поиска */
+            .search-box {
+                display: flex;
+                align-items: center;
+                margin-left: auto; /* Поместим блок поиска справа */
+            }
+
+                .search-box input[type="text"] 
+                {
+                    margin-right: 10px;
+                }
+
+
+            .d-flex {
+                display: flex !important;
+                justify-content: flex-end;
+                align-items: flex-end;
+            }
+
+            .navbar-expand-md .navbar-nav .nav-link {
+                padding-right: 6rem; <!--расст между кнопками -->
+                padding-left: 0.5rem;
+            }
+
+
+            .navbar-expand-md .navbar-collapse {
+                display: flex !important;
+                flex-basis: auto;
+                justify-content: flex-end;
+            }
+
+            .navbar-nav {
+                margin-left: auto; /* Помещаем кнопки вправо */
+            }
+
+                .navbar-nav .nav-item {
+                    margin-left: 1px; /* Устанавливаем отступ между элементами */
+                }
+
+                    .navbar-nav .nav-item:last-child {
+                        margin-right: 0; /* Отменяем отступ справа у последнего элемента */
+                    }
+
+        </style>
+
+</head>
+<body>
+    <!-- Верхняя панель -->
+        <header>
+            <nav class="navbar navbar-expand-md navbar-light bg-white border-bottom box-shadow mb-3">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">
+                    <img src="https://i.ibb.co/dLVqqvW/persona3.jpg" alt="persona3">
+                    </a>
+                    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Home/index">Главная</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Home/catal">Каталог</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Home/aboutUs">О нас</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Home/cont">Контакты</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 col-12 text-right">
+                        <div class="d-flex flex-column">
+                            <div class="d-flex align-items-center mb-2">
+                                <a style="color: #0a0700;" href="/Home/reg">Профиль</a>
+                            </div>
+<td style="align-items: flex-end;">
+    <form id="searchForm"  onsubmit="return false;">
+        <input type="text" id="searchTerm" placeholder="Поиск товара или бренда">
+        <button type="button" id="searchButton">Искать</button>
+    </form>
+</td>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+    <!-- Боковая панель -->
+        <div class="main">
+            
+        <div class="sidebar"> 
+        
+         <td width="170" cellpadding="5" valign="top" align="center">
+            <BR><BR><BR>
+            <a href="/Home/bok1">Детский Стиль </a><BR>
+            <a href="/Home/bok2">Укладка </a><BR>
+            <a href="/Home/bok3">Коррекция челки </a><BR>
+            <a href="/Home/bok4">Блондирование </a>
+        </td>
+    
+    </div>
+
+    <!-- Основной контент -->
+<div class="main-content">
+    
+        <main role="main" class="pb-3">
+                        @RenderBody()
+        </main>
+   
+</div>
+  </div>
+    
+           
+
+    <!-- Футер -->
+    <footer class="border-top footer text-muted">
+        <H1 align="center">2023 - Все права защищены</H1>
+    </footer>
+
+    <!-- Скрипты -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+<div class="modal fade" id="searchResultsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Результаты поиска</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="searchResults">
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2Xof8sGw1DGk5F1EAwojCJ6p8Ff5ibZcJ1D" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script src="~/js/site.js"></script>
+</body>
+</html>                                 
+
+
+

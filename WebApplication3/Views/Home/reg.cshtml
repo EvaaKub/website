@@ -1,0 +1,187 @@
+﻿@using WebApplication3.Models
+@{
+    ViewData["Title"] = "Персона";
+    Layout = "/Views/Shared/_Layout.cshtml";
+    var errorMessage = ViewData["ErrorMessage"] as string;
+    <!--Ошибка-->
+}
+@model userss  
+<!--передаём её-->
+<!--Подключ модел-->
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/css/site.css">
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        .login-page {
+            width: 360px;
+            margin: auto;
+        }
+
+        .form {
+            position: relative;
+            z-index: 1;
+            background: #dcdcdc;
+            max-width: 360px;
+            margin: 0 auto 100px;
+            padding: 45px;
+            text-align: center;
+            box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+        }
+
+            .form input {
+                font-family: "Roboto", sans-serif;
+                outline: 0;
+                background: #f2f2f2;
+                width: 100%;
+                border: 0;
+                margin: 0 0 15px;
+                padding: 15px;
+                box-sizing: border-box;
+                font-size: 14px;
+            }
+
+            .form button {
+                font-family: "Roboto", sans-serif;
+                text-transform: uppercase;
+                outline: 0;
+                background: #8e8e8e;
+                width: 100%;
+                border: 0;
+                padding: 15px;
+                color: #FFFFFF;
+                font-size: 14px;
+                -webkit-transition: all 0.3 ease;
+                transition: all 0.3 ease;
+                cursor: pointer;
+            }
+
+                .form button:hover, .form button:active, .form button:focus {
+                    background: #FAE7B5;
+                }
+
+            .form .message {
+                color: #b3b3b3;
+                font-size: 17px;
+            }
+
+                .form .message a {
+                    color: #56b7e9;
+                }
+
+            .form .register-form {
+                display: none;
+            }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+            .container:before, .container:after {
+                content: "";
+                display: block;
+                clear: both;
+            }
+
+            .container .info {
+                margin: 50px auto;
+                text-align: center;
+            }
+
+                .container .info h1 {
+                    margin: 0 0 15px;
+                    padding: 0;
+                    font-size: 36px;
+                    font-weight: 300;
+                    color: #1a1a1a;
+                }
+
+                .container .info span {
+                    color: #4d4d4d;
+                    font-size: 12px;
+                }
+
+                    .container .info span a {
+                        color: #000000;
+                        text-decoration: none;
+                    }
+
+                    .container .info span .fa {
+                        color: #EF3B3A;
+                    }
+
+
+        .form-control {
+            display: block;
+            width: 100%;
+            padding: 0.375rem 0.75rem;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #212529;
+            background-color: #dcdcdc;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            border-radius: 0.25rem;
+            transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        }
+
+
+
+
+
+    </style>
+</head>
+<body bgcolor="#f8f8f8">
+		
+            <table border="0" width="900" cellpadding="5" cellpadding="0" align="center">
+                <tr>
+
+            <div class="login-page">
+                <form class="login-page" method="post" action="/Home/reg1" class="mb-3">
+                    <!--Метод пост-->
+                    @Html.AntiForgeryToken() <!--что-то нужное для пост-->
+                    @Html.TextBoxFor(m => m.name, new { @class = "form-control", placeholder="имя"})
+                    @Html.TextBoxFor(m => m.password, new { @class = "form-control", placeholder="пароль"})
+                    @Html.TextBoxFor(m => m.email, new { @class = "form-control", placeholder="email address"})
+                    <!--То что вводит чел мы передаём в контроллер /Home/reg-->
+                    <p class="message"> <a href="/Home/vhod">Sign In</a></p>
+                    <div class="form-group">
+                        <button type="submit">create</button>
+                    </div>
+                </form>
+            </div>
+                 
+                </tr>
+            
+            </table>
+    <BR>
+    <BR>
+    <BR>
+    <BR>
+    <BR>
+    <BR>
+	</body>
+</html>
+
+
+
+<script>
+    $('.message a').click(function(){
+    $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+  });
+  
+  </script>
+
+
+
